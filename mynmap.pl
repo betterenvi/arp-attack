@@ -1,10 +1,12 @@
 #! /usr/bin/perl -w
 use strict;
+# ipv4地址和硬件MAC地址匹配的正则表达式
 my $ip4_reg = qr /\d+(?:\.\d+){3}/;
 my $hwaddr_reg = qr /[\da-fA-f]{2}(?::[\da-fA-f]{2}){5}/;
 
 exit 1 unless $#ARGV == 1;
 
+# 提取并解析nmap命令的输出
 my $nmapret = `nmap -sP $ARGV[1]`;
 exit 1 unless ($nmapret =~ /Nmap done: (\d+) IP addresses \((\d+) hosts up\) scanned in (\d+(?:\.\d+)?) seconds/);
 print "$1 $2 $3\n";

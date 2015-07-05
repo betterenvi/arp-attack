@@ -51,15 +51,15 @@ app.io.route('cmd', function(req){	//响应cmd事件
 	    }
 	    host[args['dstIP']][args['sel']] = cmd.pid;
 		cmd.stdout.on('data', function (data) {
-			if (args['sel']=='crs'){
-				  req.io.emit(args['sel'], {
-				  	message: {
-				  		'data':data.toString(),
-				  		'ip':args['dstIP'],
-				  		'sel':args['sel']
-				  	}
-				  });
-			}
+			console.log(data);
+			req.io.emit(args['sel'], {
+			  	message: {
+			  		'data':data.toString(),
+			  		'ip':args['dstIP'],
+			  		'sel':args['sel']
+			  	}
+			});
+			
 			console.log(args['dstIP']);
 			dataStr = JSON.stringify(data);
 			d = JSON.parse(dataStr);

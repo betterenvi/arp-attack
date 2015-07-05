@@ -1,3 +1,22 @@
-我们使用了一个基于Node.js的Web实时框架Express.io来实现服务器和客户端的通讯。
+一、架构
+我们使用了一个基于Node.js的Web实时框架Express.io来实现服务器和客户端的数据通讯。
+在服务器端，根据客户端的请求，由Node调用相应的shell或perl脚本，然后把这些脚本的输出返回给客户端。在这里，我们正是考虑到这些shell和perl脚本的执行需要一个很长的时间，所以采用了Express.io这个实时web框架。
+在客户端，除了用到Express.io来实现和服务器的通讯外，我们使用了Jquery库和UI框架Bootstrap。
+
+运行环境：
+Ubuntu 14.04
+Node.js v0.12.0
+shell
+Perl
+
+文件组成： 
+1. app.js：服务器代码
+2. views：模板目录
+views/index.ejs：index网页模板
+3. public:公开可访问静态资源
+4. node_modules：这个项目要用的一些node模块
 
 
+成员分工：
+白金泽：
+陈庆英：Node后台服务器开发；前端网页的设计与开发

@@ -4,12 +4,24 @@
 在客户端，除了用到Express.io来实现和服务器的通讯外，我们使用了Jquery库和UI框架Bootstrap。
 
 运行环境：
-Ubuntu 14.04
+Ubuntu 14.04 / Arch
 Node.js v0.12.0
 shell
 Perl
 
+演示方法：
+1. 运行：sudo node app.js
+2. 为方便Demo，请把自己的电脑和手机连接至同一个局域网下，
+3. 通过浏览器访问：http://localhost:7076
+   此时可以看到自己机器的一些信息。等待若干秒之后，可以看到同一个局域网下的活跃Host。
+4. 选择自己手机对应的Host进行Its嗅探、Course嗅探或者访问历史（Log）窥探。当然，你可以对列表中的任意一个Host进行这样的操作。
+5. 假如你选择了Its嗅探，那么此时，请打开手机浏览器，登录http://its.pku.edu.cn，（注意是http，不是https），那么你就可以看到自己的账号、密码出现在电脑的网页上。
+6. 对于Course嗅探，操作是类似的。
+7. 访问历史（Log）窥探在Arch下是成功的，但是在Ubuntu下，我们在网上查阅了一些资料，发现Ubuntu的一个Bug导致此功能未能实现。
+
+
 项目代码网址： https://github.com/betterenvi/arp-attack/
+
 
 文件组成： 
 1. app.js：服务器代码
@@ -22,3 +34,7 @@ views/index.ejs：index网页模板
 成员分工：
 白金泽：
 陈庆英：Node后台服务器开发；前端网页的设计与开发
+
+
+！！！！！！！！！！！！仅供娱乐，请勿做不利于他人利益的事！！！！！！！！！！
+！！！！！！！！！！！！同时在局域网下，保持警惕！！！！！！！！！！！！！！！

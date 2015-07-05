@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Bootstrap core CSS -->
+<link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<!--为了防止导航栏将内容遮挡住，添加此行样式-->
+    <style>
+      body {
+        padding-top: 50px;
+      }
+      .starter-template {
+        padding: 40px 15px;
+        text-align: center;
+      }
+
+    </style>
+</head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li class=""><a href="#">主页</a></li>
+            <li><a href="#alist">子网IP列表</a></li>
+<li><a href="#aits">its嗅探</a></li>
+<li><a href="#acourse">Course嗅探</a></li>
+<li><a href="#alog">浏览Log</a></li>
+<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+           
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">登录</a></li>
+            <li><a href="#">注册</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<div class="container" id="container" >
+
+      <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron ">
+    
+    <h3>
+      我的信息&nbsp;
+    </h3>
+            <table class="table table-hover table-bordered"  id="table_myconfig">
+                <tr class="danger">
+                    <th>网络标识</th>
+                    <th>网络类型</th>
+                    <th>本机IP</th>
+                    <th>子网掩码</th>
+                    <th>Mac地址</th>
+                    <th>路由IP</th>
+                </tr>
+                <tr class="info">
+                  <% for(var i=0; i<info.length - 1; i++) {%>
+                     <td><%= info[i] %></td>
+                  <% } %>
+                </tr>
+            </table>
+
+    <h3 id="alist">
+      子网IP列表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="wait"><font size="4" color="red">正在计算中，请稍等...</font></span>
+      <span><button id="list" class="btn btn-success sniff pull-right" type="button">收起</button></span>
+    </h3>
+        <form action="#" method="POST" id="updatetodo">
+            <table class="table table-hover table-bordered"  id="table_list">
+                <tr class="danger" id='header_list'>
+                    <th>IP地址</th>
+                    <th>Mac地址</th>
+                    <th>设备类型</th>
+                    <th>Its嗅探</th>
+                    <th>Crs嗅探</th>
+                    <th>Log嗅探</th>
+                </tr>
+            
+            </table>
+
+        </form>
+
+    <h3 id="aits">
+    	its嗅探&nbsp;
+    	<span><button id="its" class="btn btn-success sniff pull-right" type="button">收起</button></span>
+    </h3>
+        <form action="#" method="POST" id="updatetodo">
+            <table class="table table-hover table-bordered"  id="table_its">
+                <tr class="danger" id='header_its'>
+                    <th>IP</th>
+                    <th>学号</th>
+                    <th>密码</th>
+                    <th>连接</th>
+                </tr>
+            
+            </table>
+
+        </form>
+	    <h3 id="acourse">
+	    	Course嗅探&nbsp;
+	    	<span><button id="course" class="btn btn-success sniff pull-right" type="button">收起</button></span>
+	    </h3>
+        <form action="#" method="POST" id="updatetodo">
+            <table class="table table-hover table-bordered"  id="table_course">
+                <tr class="danger" id="header_crs">
+                    <th>名称</th>
+                </tr>
+            
+            </table>
+        </form>
+        <h3 id="alog">
+	    	浏览Log&nbsp;
+	    	<span><button id="log" class="btn btn-success sniff pull-right" type="button">收起</button></span>
+    	</h3>
+        <form action="#" method="POST" id="updatetodo">
+            <table class="table table-hover table-bordered"  id="table_log">
+                <tr class="danger" id="header_log">
+                    <th>IP</th>
+                    <th>URL</th>
+                    <th>浏览器及系统</th>
+                    <th>百度关键词</th>
+                </tr>
+            
+            </table>
+        </form>
+    </div>
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+	io = io.connect();
+	function Array2String(array) {
+  		var result = "";
+  		for (var i = 0; i < array.length; i++) {
+    		result += String.fromCharCode(parseInt(array[i], 10));
+  		}
+  		return result;
+	};
+  function genEntry(ress){
+    html = '<tr class="info">';
+    console.log("length:" + ress.length);
+    for (i = 0; i < ress.length; ++i){
+      if (ress[i] == ''){
+        continue;
+      }
+      console.log(ress[i]);
+      html += '<td>' + ress[i] + '</td>';
+    }
+    html += "</tr>";
+    return html;
+  }
+  function genIPEntry(ip, items){
+    html='<tr class="info">';
+    html += "<td>" + ip + "</td>";
+    html += '<td>' + items['mac'] + "</td>";
+    html += '<td>' + items['dev'] + "</td>";
+    html += '<td><button class="btn btn-info choice" ip="'
+     + ip + '" sel="its">开始</button></td>';
+    html += '<td><button class="btn btn-info choice" ip="'
+     + ip + '" sel="crs">开始</button></td>';
+    html += '<td><button class="btn btn-info choice" ip="'
+     + ip + '" sel="log">开始</button></td>';
+     return html;
+  }
+  function genCrsEntry(ress){
+    html = '';
+    console.log("length:" + ress.length);
+    for (i = 0; i < ress.length; ++i){
+      if (ress[i] == ''){
+        continue;
+      }
+      console.log(ress[i]);
+      html += '<tr class="info"><td>' + ress[i] + '</td></tr>';
+    }
+    return html;
+  }
+  var hostlist = {};
+  function addChoiceLister(){
+    $(".choice").unbind( "click" );
+    $(".choice").click(function(event){
+      var tar = event.target;
+      var ip = tar.getAttribute("ip");
+      var sel = tar.getAttribute("sel");
+      console.log(ip);
+      console.log(hostlist[ip][sel]);
+      if (hostlist[ip][sel]==false){
+    		tar.innerHTML = '开始';
+        tar.setAttribute('class', 'btn btn-info choice');
+    		hostlist[ip][sel] = true;
+        io.emit('cmd', {'op':'kill', 'dstIP':ip, 'sel':sel});
+    		return false;
+      }	
+      //console.log(sel);
+      tar.innerHTML = '停止';
+        tar.setAttribute('class', 'btn btn-warning choice');
+      hostlist[ip][sel] = false;
+      //bash *.sh wlp7s0 [det.ip] [route.ip]
+      io.emit('cmd', {'sel':sel, 'dstIP':ip});
+      return false;
+    });
+  }
+  var infoPresented = false;
+  io.emit('cmd', {'op':'nmap'});
+  io.on('nmap', function(data){
+    res = Array2String(data.message.data);
+    console.log(res);
+    lines = res.split('\n');
+    console.log('lines:' + lines.length);
+    i = 0;
+    if (infoPresented == false){
+      infos = lines[0].split(' ');
+      $("#wait").text('共扫描'+(parseInt(infos[0]))+'个Host，共'+parseInt(infos[1]-2)+'个活跃Host，耗时'+infos[2]+'秒');
+      infoPresented = true;
+      i += 1;
+    }
+    
+    for (;i < lines.length; ++i){
+      items = lines[i].split('\t');
+      if (items[0]==''){
+        continue;
+      }
+      hostlist[items[0]] = {
+        'mac':items[1],
+        'dev':items[2],
+        'its':true, 
+        'crs':true, 
+        'log':true
+      };/*
+      if (hostlist[items[0]]['added'] == null){
+        hostlist[items[0]]['added']  = false;
+      }*/
+      $("#header_list").after(genIPEntry(items[0], hostlist[items[0]]));
+    }
+    addChoiceLister();
+
+  });
+	// Emit ready event.
+	//io.emit('cmd', {'sel':'its', 'type':'wlan0', 'dstIP':'192.168.1.119', 'routerIP':'192.168.1.253'});
+
+	// Listen for the talk event.
+	var res = null;
+
+  io.on('log', function(data) {
+    res = Array2String(data.message.data);
+    console.log(res);
+    ress = res.split('\n'); 
+    for (i=0;i<ress.length;++i){
+      line = ress.split('\t');
+      lines.unshift(data.message.ip);
+      $("#header_log").after(genEntry(line));
+    }   
+    //ress.unshift(data.message.ip);
+
+  })
+	io.on('its', function(data) {
+    console.log(data.message);
+		res = Array2String(data.message.data);  
+    ress = res.split(/\s+/);
+    ip = data.message.ip;
+    sel = data.message.sel;
+    ress.unshift(ip);
+    option = '[ip="' + ip + '"][sel="' + sel + '"]';
+    console.log(option);
+    $(option).text('开始');
+    $(option).attr('class', 'btn btn-info choice');
+    $("#header_its").after(genEntry(ress));
+	})
+
+	io.on('crs', function(data) {
+		//res = Array2String(data.message.data);
+    res=data.message.data;
+    console.log(res);
+    ress = res.split('\n');  
+    ip = data.message.ip;
+    sel = data.message.sel;
+    option = '[ip="' + ip + '"][sel="' + sel + '"]';
+    console.log(option);
+    $(option).text('开始');
+    $(option).attr('class', 'btn btn-info choice');  
+    //ress.unshift(data.message.ip);
+    $("#header_crs").after(genCrsEntry(ress));
+	});
+	
+	var states = {'list':true, 'its':true, 'course':true, 'log':true};
+	$('.sniff').click(function(event){
+		var tar = event.target;
+		console.log(tar);
+		var tar_id = tar.getAttribute('id');
+		if (states[tar_id] == true){
+			$("#" + tar_id).attr("class", "btn btn-danger sniff pull-right");
+			$('#table_' + tar_id).attr("class", 'hide');
+			$("#" + tar_id).text("显示");
+			states[tar_id] = false;
+		}else{
+			$("#" + tar_id).attr("class", "btn btn-success sniff pull-right");
+			$('#table_' + tar_id).attr("class", 'table table-hover table-bordered');
+			$("#" + tar_id).text("收起");
+			states[tar_id] = true;
+		}
+		return false;
+
+	});
+
+	</script>
+
+  </body>
+</html>
+

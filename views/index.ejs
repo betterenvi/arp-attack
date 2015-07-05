@@ -276,12 +276,12 @@
 	var res = null;
 
   io.on('log', function(data) {
-    res = Array2String(data.message.data);
+    res = (data.message.data);
     console.log(res);
     ress = res.split('\n'); 
     for (i=0;i<ress.length;++i){
-      line = ress.split('\t');
-      lines.unshift(data.message.ip);
+      line = ress[i].split('\t');
+      line.unshift(data.message.ip);
       $("#header_log").after(genEntry(line));
     }   
     //ress.unshift(data.message.ip);
@@ -289,7 +289,7 @@
   })
 	io.on('its', function(data) {
     console.log(data.message);
-		res = Array2String(data.message.data);  
+		res = (data.message.data);  
     ress = res.split(/\s+/);
     ip = data.message.ip;
     sel = data.message.sel;
